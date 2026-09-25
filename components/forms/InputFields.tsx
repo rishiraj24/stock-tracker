@@ -1,0 +1,25 @@
+import { Input } from "@base-ui/react"
+import { Label } from "../ui/label"
+import { cn } from "cn"
+
+const InputField = ({name,label,placeholder,type="text", register,error,validation,disabled,value}: FormInputProps) => {
+    return(
+        <div className="space-y-2 w-full">
+            <Label htmlFor={name} className="form-label">
+                {label}
+            </Label>
+            <Input
+                type={type}
+                id={name}
+                placeholder={placeholder}
+                disabled={disabled}
+                value={value}
+                className={cn('form-input w-full', {'opacity-50 cursor-not-allowed':disabled})}
+                {...register(name,validation)}
+            />
+            {error && <p className="text-sm text-red-500">{error.message}</p>}
+        </div>
+    )
+}
+
+export default InputField
